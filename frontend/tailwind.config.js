@@ -4,10 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        "ecom-1": "#C4DFDF",
-        "ecom-2": "#D2E9E9",
-        "ecom-3": "#E3F4F4",
-        "ecom-4": "#F8F6F4",
+        "ecom-1": "#222831",
+        "ecom-2": "#393E46",
+        "ecom-3": "#00ADB5",
+        "ecom-4": "#EEEEEE",
       },
       screens: {
         sm: { max: "480px" },
