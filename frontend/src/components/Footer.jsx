@@ -18,7 +18,7 @@ const Footer = () => {
         >
           <img
             className="w-10 h-10 p-1 bg-ecom-3 rounded-full"
-            src="header-logo.svg"
+            src="/header-logo.svg"
             alt=""
           />
           <span className="ml-3 text-xl">Ecommerce</span>

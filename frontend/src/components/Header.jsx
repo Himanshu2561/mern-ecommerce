@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+
+  const { cartItems } = useSelector((state) => state.cart);
 
   return (
     <header className="text-ecom-4 bg-ecom-1 body-font sm:flex sm:flex-col">
@@ -13,7 +16,7 @@ const Header = () => {
         >
           <img
             className="w-14 h-14 p-1 bg-ecom-3 rounded-full cursor-pointer shadow-md sm:h-10 sm:w-10"
-            src="header-logo.svg"
+            src="/header-logo.svg"
             alt=""
           />
           <span className="ml-3 text-xl cursor-pointer">Ecommerce</span>
@@ -33,12 +36,19 @@ const Header = () => {
           </Link>
         </nav>
         <div className="flex items-center gap-5 sm:hidden">
-          <Link to="user/cart">
-            <img
-              className="p-1 w-10 h-10 cursor-pointer"
-              src="cart.svg"
-              alt=""
-            />
+          <Link to="/cart">
+            <div className="w-11 h-11 relative">
+              <img
+                className="p-1 w-full cursor-pointer"
+                src="/cart.svg"
+                alt=""
+              />
+              {cartItems.length > 0 && (
+                <div className="absolute w-4 h-4 top-0 right-0 rounded-full bg-ecom-3 text-xs text-center">
+                  {cartItems.reduce((a, c) => a + c.qty, 0)}
+                </div>
+              )}
+            </div>
           </Link>
           <Link
             to="/login"
@@ -85,7 +95,7 @@ const Header = () => {
             <button>
               <img
                 className="p-1 w-10 h-10 cursor-pointer"
-                src="cart.svg"
+                src="/cart.svg"
                 alt=""
               />
             </button>
