@@ -1,11 +1,32 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { FaAngleDown } from "react-icons/fa";
+import { toast } from "react-toastify";
+import { useLogoutMutation } from "../slices/usersApiSlice";
+import { logout } from "../slices/authSlice";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
 
   const { cartItems } = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logoutApiCall] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate("/login");
+      toast.info("You have been logged out");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <header className="text-ecom-4 bg-ecom-1 body-font sm:flex sm:flex-col">
@@ -50,23 +71,48 @@ const Header = () => {
               )}
             </div>
           </Link>
-          <Link
-            to="/login"
-            className="inline-flex items-center bg-ecom-3 border-0 py-1 px-3 focus:outline-none hover:bg-ecom-2 transition rounded text-base"
-          >
-            Sign In
-            <svg
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="w-4 h-4 ml-1"
-              viewBox="0 0 24 24"
+          {userInfo ? (
+            <div className="dropdown items-center bg-ecom-3 border-0 py-1 px-3 focus:outline-none rounded text-base">
+              <button className="flex items-center gap-2">
+                <div>Hello, {userInfo.name}</div>
+                <div className="text-lg mt-1">
+                  <FaAngleDown />
+                </div>
+              </button>
+              <div className="dropdown-content hidden absolute right-0 flex-col bg-ecom-4 w-28 mt-1 rounded-sm text-gray-500 shadow-xl z-10">
+                <Link
+                  to="/profile"
+                  className="hover:font-semibold px-3 py-1 cursor-pointer"
+                >
+                  Profile
+                </Link>
+                <div
+                  onClick={logoutHandler}
+                  className="hover:font-semibold px-3 py-1 cursor-pointer"
+                >
+                  Logout
+                </div>
+              </div>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="inline-flex items-center bg-ecom-3 border-0 py-1 px-3 focus:outline-none hover:bg-ecom-2 transition rounded text-base"
             >
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </Link>
+              Sign In
+              <svg
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                className="w-4 h-4 ml-1"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </Link>
+          )}
         </div>
         <div
           onClick={() => setToggle(!toggle)}
@@ -99,9 +145,34 @@ const Header = () => {
                 alt=""
               />
             </button>
-            <button className="inline-flex items-center bg-gray-500 text-ecom-4 border-0 py-1 px-3 focus:outline-none hover:bg-white hover:shadow-lg transition rounded text-base">
-              Sign In
-            </button>
+            {userInfo ? (
+              <div className="dropdown items-center bg-ecom-3 border-0 py-1 px-3 focus:outline-none rounded text-base">
+                <button className="flex items-center gap-2">
+                  <div>Hello, {userInfo.name}</div>
+                  <div className="text-lg mt-1">
+                    <FaAngleDown />
+                  </div>
+                </button>
+                <div className="dropdown-content hidden absolute right-0 flex-col bg-ecom-4 w-28 mt-1 rounded-sm text-gray-500 shadow-xl z-10">
+                  <Link
+                    to="/profile"
+                    className="hover:font-semibold px-3 py-1 cursor-pointer"
+                  >
+                    Profile
+                  </Link>
+                  <div
+                    onClick={logoutHandler}
+                    className="hover:font-semibold px-3 py-1 cursor-pointer"
+                  >
+                    Logout
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <button className="inline-flex items-center bg-gray-500 text-ecom-4 border-0 py-1 px-3 focus:outline-none hover:bg-white hover:shadow-lg transition rounded text-base">
+                Sign In
+              </button>
+            )}
           </div>
         </div>
       )}
