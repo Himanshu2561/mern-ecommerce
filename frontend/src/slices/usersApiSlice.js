@@ -11,6 +11,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+
     register: builder.mutation({
       query: (data) => ({
         url: `${USERS_URL}`,
@@ -18,23 +19,26 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-    update: builder.mutation({
-      query: (data) => ({
-        url: `${USERS_URL}/profile`,
-        method: "PUT",
-        body: data,
-      }),
-    }),
+
     logout: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/logout`,
         method: "POST",
       }),
     }),
+
     delete: builder.mutation({
       query: () => ({
         url: `${USERS_URL}/profile`,
         method: "DELETE",
+      }),
+    }),
+
+    profile: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/profile`,
+        method: "PUT",
+        body: data,
       }),
     }),
   }),
@@ -46,6 +50,6 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useRegisterMutation,
-  useUpdateMutation,
   useDeleteMutation,
+  useProfileMutation
 } = userApiSlice;

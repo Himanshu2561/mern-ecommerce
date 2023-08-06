@@ -45,7 +45,7 @@ const CartRows = () => {
                 scope="row"
                 className="px-6 py-4 font-medium flex items-center gap-2 text-gray-900"
               >
-                <div className="w-24">
+                <div className="w-16">
                   <img className="rounded-sm" src="/dummyImg2.jpg" alt="" />
                 </div>
                 <div className="">

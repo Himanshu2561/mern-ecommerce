@@ -1,11 +1,11 @@
 import asyncHandler from "../middleware/asyncHandler.js";
-import productModel from "../models/productModel.js";
+import Product from "../models/productModel.js";
 
 // @desc    Fetch all products
-// @route   Get /api/products
+// @route   GET/api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await productModel.find({});
+  const products = await Product.find({});
 
   if (products) {
     res.status(200).json(products);
@@ -16,10 +16,10 @@ const getProducts = asyncHandler(async (req, res) => {
 });
 
 // @desc    Fetch a products
-// @route   Get /api/products/:id
+// @route   GET/api/products/:id
 // @access  Public
 const getProductById = asyncHandler(async (req, res) => {
-  const product = await productModel.findById(req.params.id);
+  const product = await Product.findById(req.params.id);
 
   if (product) {
     res.status(200).json(product);
