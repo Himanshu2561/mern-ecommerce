@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
@@ -71,6 +71,7 @@ const Header = () => {
               )}
             </div>
           </Link>
+          {/* DROP DOWN */}
           {userInfo ? (
             <div className="dropdown items-center bg-ecom-3 border-0 py-1 px-3 focus:outline-none rounded text-base">
               <button className="flex items-center gap-2">
@@ -113,24 +114,58 @@ const Header = () => {
               </svg>
             </Link>
           )}
+          {/* ADMIN DROP DOWN (ONLY DESKTOP) */}
+          {userInfo && userInfo.isAdmin && (
+            <>
+              <div className="dropdown items-center bg-ecom-3 border-0 py-1 px-3 focus:outline-none rounded text-base">
+                <button className="flex items-center gap-2">
+                  <div>Admin</div>
+                  <div className="text-lg mt-1">
+                    <FaAngleDown />
+                  </div>
+                </button>
+                <div className="dropdown-content hidden absolute right-0 flex-col text-xs text-right bg-ecom-4 w-20 mt-1 rounded-sm text-gray-500 shadow-xl z-10">
+                  <Link
+                    to="/admin/userlist"
+                    className="hover:font-semibold px-3 py-1 cursor-pointer"
+                  >
+                    Users
+                  </Link>
+                  <Link
+                    to="/admin/orderlist"
+                    className="hover:font-semibold px-3 py-1 cursor-pointer"
+                  >
+                    Orders
+                  </Link>
+                  <Link
+                    to="/admin/productlist"
+                    className="hover:font-semibold px-3 py-1 cursor-pointer"
+                  >
+                    Products
+                  </Link>
+                </div>
+              </div>
+            </>
+          )}
         </div>
+        {/* SMALL SCREEN TOGGLE BTN */}
         <div
           onClick={() => setToggle(!toggle)}
-          className="hidden sm:flex relative gap-1 flex-col items-center rounded-full bg-ecom-4 p-2 w-8 h-8 justify-center"
+          className="hidden sm:flex relative gap-1 flex-col items-center rounded-full bg-ecom-4 p-2 w-8 h-8 justify-center z-20"
         >
           {toggle ? (
-            <p className="text-2xl ml-[5px] mb-[2px] rotate-45 transition">+</p>
+            <FaTimes className="text-gray-800 transition" />
           ) : (
             <>
-              <p className="border-t-2 w-4 border-black transition"></p>
-              <p className="border-t-2 w-4 border-black transition"></p>
-              <p className="border-t-2 w-4 border-black transition"></p>
+              <p className="border-t-2 w-4 border-gray-800 transition z-20"></p>
+              <p className="border-t-2 w-4 border-gray-800 transition z-20"></p>
+              <p className="border-t-2 w-4 border-gray-800 transition z-20"></p>
             </>
           )}
         </div>
       </div>
       {toggle && (
-        <div className="bg-ecom-3 flex flex-col justify-center gap-10 items-center h-screen absolute w-full -z-10">
+        <div className="bg-ecom-3 flex flex-col justify-center gap-10 items-center h-screen absolute w-full z-10">
           <div className="flex flex-col flex-wrap items-start gap-4 justify-center">
             <a className="cursor-pointer hover:text-ecom-4">First Link</a>
             <a className="cursor-pointer hover:text-ecom-4">Second Link</a>

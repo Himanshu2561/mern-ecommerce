@@ -4,6 +4,7 @@ import {
   useGetOrderDetailsQuery,
   useGetPayPalClientIdQuery,
   usePayOrderMutation,
+  useDeliverOrderMutation,
 } from "../slices/ordersApiSlice";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
@@ -21,6 +22,9 @@ const OrderScreen = () => {
   } = useGetOrderDetailsQuery(orderId);
 
   const { userInfo } = useSelector((state) => state.auth);
+
+  const [deliverOrder, { isLoading: loadingDeliver }] =
+    useDeliverOrderMutation();
 
   const [payOrder, { isLoading: lodingPay }] = usePayOrderMutation();
 
@@ -91,6 +95,16 @@ const OrderScreen = () => {
       });
   }
 
+  const deliverOrderHandler = async () => {
+    try {
+      await deliverOrder(orderId);
+      refetch();
+      toast.success("Order marked as delivered");
+    } catch (err) {
+      toast.error(err?.data?.message || err.message);
+    }
+  };
+
   return isLoading ? (
     <div className="flex justify-center items-center h-[50vh]">
       <Loader />
@@ -124,7 +138,7 @@ const OrderScreen = () => {
                     </div>
                     {order?.isDelivered ? (
                       <div className="py-2 px-4 w-full rounded-md bg-green-500 bg-opacity-50 mt-4 text-green-500 text-sm">
-                        Delivered on: {order?.deliveredAt}
+                        Delivered on: {order?.deliveredAt.substring(0, 10)}
                       </div>
                     ) : (
                       <div className="py-2 px-4 w-full border rounded-md bg-red-500 bg-opacity-50 mt-4 text-red-500 text-sm">
@@ -141,7 +155,7 @@ const OrderScreen = () => {
                   </div>
                   {order?.isPaid ? (
                     <div className="py-2 px-4 w-full rounded-md bg-green-500 bg-opacity-50 mt-4 text-green-500 text-sm">
-                      Paid on: {order?.paidAt}
+                      Paid on: {order?.paidAt.substring(0, 10)}
                     </div>
                   ) : (
                     <div className="py-2 px-4 w-full border rounded-md bg-red-500 bg-opacity-50 mt-4 text-red-500 text-sm">
@@ -230,7 +244,20 @@ const OrderScreen = () => {
                   </>
                 )}
 
-                {/* MARK AS DELIVERD BTN */}
+                {loadingDeliver && <Loader />}
+
+                {userInfo &&
+                  userInfo.isAdmin &&
+                  order.isPaid &&
+                  !order.isDelivered && (
+                    <button
+                      onClick={deliverOrderHandler}
+                      type="button"
+                      className="text-center py-2 mb-4 rounded-md text-white font-bold bg-opacity-75 w-full bg-ecom-3 hover:bg-opacity-100 transition cursor-pointer"
+                    >
+                      Mark As Delivered
+                    </button>
+                  )}
               </div>
             </div>
           </div>

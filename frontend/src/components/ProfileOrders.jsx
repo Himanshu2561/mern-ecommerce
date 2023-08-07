@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 
 const ProfileOrders = ({ orders }) => {
-  console.log(orders);
   return (
     <div className="relative overflow-x-auto shadow-md rounded-lg select-none">
       <table className="w-full text-xs text-left text-gray-500">

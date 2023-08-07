@@ -50,6 +50,10 @@ const ProfileScreen = () => {
 
         dispatch(setCredentials(res));
 
+        setDisableName(true);
+        setDisableEmail(true);
+        setDisablePass(true);
+
         toast.success("Profile updated");
       } catch (err) {
         if (err?.status == 500) {
@@ -172,7 +176,9 @@ const ProfileScreen = () => {
         </div>
       </div>
       <div className="rounded-md">
-        <div className="text-lg font-bold border-b text-gray-700 mb-5">ORDERS</div>
+        <div className="text-lg font-bold border-b text-gray-700 mb-5">
+          ORDERS
+        </div>
         {isLoading ? (
           <Loader />
         ) : error ? (
