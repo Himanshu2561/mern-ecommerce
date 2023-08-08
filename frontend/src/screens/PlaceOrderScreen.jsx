@@ -89,7 +89,7 @@ const PlaceOrderScreen = () => {
                             <div className="w-16">
                               <img
                                 className="rounded-sm"
-                                src="/dummyImg2.jpg"
+                                src={item.image.url}
                                 alt=""
                               />
                             </div>

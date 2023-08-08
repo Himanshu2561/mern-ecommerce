@@ -46,10 +46,10 @@ const CartRows = () => {
                 className="px-6 py-4 font-medium flex items-center gap-2 text-gray-900"
               >
                 <div className="w-16">
-                  <img className="rounded-sm" src="/dummyImg2.jpg" alt="" />
+                  <img className="rounded-sm" src={item.image.url} alt="" />
                 </div>
                 <div className="">
-                  <Link to={`/products/${item._id}`}>{item.name}</Link>
+                  <Link to={`/product/${item._id}`}>{item.name}</Link>
                 </div>
               </th>
               <td align="center" className="px-6 py-4">

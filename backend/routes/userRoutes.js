@@ -2,7 +2,6 @@ import express from "express";
 import { admin, protect } from "../middleware/authMiddleware.js";
 import {
   updateUserProfile,
-  deleteUserProfile,
   getUserProfile,
   registerUser,
   deleteUser,
@@ -21,8 +20,7 @@ router.post("/logout", logoutUser);
 router
   .route("/profile")
   .get(protect, getUserProfile)
-  .put(protect, updateUserProfile)
-  .delete(protect, deleteUserProfile);
+  .put(protect, updateUserProfile);
 router
   .route("/:id")
   .get(protect, admin, getUserById)

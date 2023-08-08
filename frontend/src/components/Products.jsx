@@ -29,8 +29,8 @@ const Products = () => {
                   >
                     <img
                       alt="ecommerce"
-                      className="object-cover object-center lg:w-full h-full block"
-                      src="dummyImg2.jpg"
+                      className="object-cover object-center w-full h-full block"
+                      src={item.image.url}
                     />
                   </Link>
                   <div className="mt-4">

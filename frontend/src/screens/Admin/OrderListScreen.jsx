@@ -28,7 +28,7 @@ const OrderListScreen = () => {
                   <th scope="col" className="px-6 py-3">
                     ID
                   </th>
-                  <th scope="col" align="center" className="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     USER
                   </th>
                   <th scope="col" align="center" className="px-6 py-3">

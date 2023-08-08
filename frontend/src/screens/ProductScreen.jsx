@@ -114,7 +114,7 @@ const ProductScreen = () => {
               <img
                 alt="ecommerce"
                 className="w-1/2 sm:w-full h-auto sm:h-64 object-cover object-center rounded"
-                src="/dummyImg.jpg"
+                src={product.image.url}
               />
             </div>
           </div>

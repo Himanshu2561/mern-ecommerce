@@ -37,8 +37,15 @@ const productSchema = new mongoose.Schema(
       required: [true, "Please provide name of the product"],
     },
     image: {
-      type: String,
-      required: true,
+      public_id: {
+        type: String,
+        default: "",
+      },
+      url: {
+        type: String,
+        required: true,
+        default: "/dummyImg.jpg",
+      },
     },
     description: {
       type: String,
