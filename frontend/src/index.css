@@ -18,3 +18,40 @@
 .dropdown:hover .dropdown-content {
   display: flex;
 }
+
+.paginate-contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1rem;
+  width: fit-content;
+  font-size: large;
+  margin-top: 5rem;
+  margin-inline: auto;
+  font-weight: bold;
+}
+
+.pg-active {
+  font-size: x-large;
+}
+
+.pg-num {
+  padding-inline: 0.5rem;
+}
+
+.dis-corner {
+  color: rgb(196, 196, 196);
+  font-size: medium;
+}
+
+.prev {
+  margin-right: 1rem;
+  position: absolute;
+  left: 30%;
+}
+
+.next {
+  margin-left: 1rem;
+  position: absolute;
+  right: 30%;
+}
