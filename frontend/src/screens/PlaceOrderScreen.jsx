@@ -94,7 +94,7 @@ const PlaceOrderScreen = () => {
                               />
                             </div>
                             <div className="underline">
-                              <Link to={`/products/${item._id}`}>
+                              <Link to={`/product/${item._id}`}>
                                 {item.name}
                               </Link>
                             </div>

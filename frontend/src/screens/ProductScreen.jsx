@@ -1,8 +1,11 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
+import {
+  useCreateReviewMutation,
+  useGetProductDetailsQuery,
+} from "../slices/productsApiSlice";
 import { addToCart } from "../slices/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Rating from "../components/Rating";
 import Loader from "../components/Loader";
 import {
@@ -11,11 +14,15 @@ import {
   BiLeftArrowCircle,
 } from "react-icons/bi";
 import { toast } from "react-toastify";
+import Reviews from "../components/Reviews";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
 
   const [qty, setQty] = useState(1);
+  const [rating, setRating] = useState(5);
+  const [comment, setComment] = useState("");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -23,7 +30,13 @@ const ProductScreen = () => {
     data: product,
     isLoading,
     isError,
+    refetch,
   } = useGetProductDetailsQuery(productId);
+
+  const [createReview, { isLoading: loadingCreateProductReview }] =
+    useCreateReviewMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
 
   const addToCartHandler = () => {
     if (qty > 0) {
@@ -31,6 +44,25 @@ const ProductScreen = () => {
       navigate("/cart");
     } else {
       toast.info("Please Select Quantity");
+    }
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      await createReview({
+        productId,
+        rating,
+        comment,
+      }).unwrap();
+
+      refetch();
+      toast.success("Review Submitted");
+      setRating(5);
+      setComment("");
+    } catch (err) {
+      toast.error(err?.data?.message || err.message);
     }
   };
 
@@ -113,9 +145,102 @@ const ProductScreen = () => {
               </div>
               <img
                 alt="ecommerce"
-                className="w-1/2 sm:w-full h-auto sm:h-64 object-cover object-center rounded"
+                className="w-1/2 sm:w-full h-auto sm:h-64 object-contain object-center rounded"
                 src={product.image.url}
               />
+            </div>
+            <div className="w-4/5 mx-auto flex flex-wrap">
+              <div className="w-1/2 flex flex-col gap-y-5 sm:w-full pr-10 py-6 mb-6 sm:mb-0">
+                <div className="text-xl font-bold border-b pb-1">
+                  Reviews
+                </div>
+                {product.reviews.length === 0 && (
+                  <div className="p-4 bg-[#4f46e5] bg-opacity-75 mb-5 text-white font-bold rounded-lg">
+                    No Reviews Yet
+                  </div>
+                )}
+                {product.reviews.map((review) => (
+                  <Reviews key={review._id} review={review} />
+                ))}
+              </div>
+              <div className="w-1/2 sm:w-full py-6 mb-6 sm:mb-0">
+                {product.reviews.length === 0 ? (
+                  <div className="text-base font-bold border-b pb-1 mb-5 capitalize">
+                    Be the first to review this product
+                  </div>
+                ) : (
+                  <div className="text-xl font-bold border-b pb-1 mb-5">
+                    Write a Customer Review
+                  </div>
+                )}
+
+                {userInfo ? (
+                  <form
+                    onSubmit={submitHandler}
+                    className="space-y-4 md:space-y-6"
+                  >
+                    <div>
+                      <label
+                        htmlFor="rating"
+                        className="block mb-2 text-sm font-medium text-gray-900"
+                      >
+                        Choose a Rating
+                      </label>
+                      <select
+                        value={rating}
+                        id="rating"
+                        required={true}
+                        onChange={(e) => {
+                          setRating(e.target.value);
+                        }}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                        name="rating"
+                      >
+                        <option value="5">Excellent</option>
+                        <option value="4">Good</option>
+                        <option value="3">Average</option>
+                        <option value="2">Bad</option>
+                        <option value="1">Very Bad</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="comment"
+                        className="block mb-2 text-sm font-medium text-gray-900"
+                      >
+                        Comment
+                      </label>
+                      <textarea
+                        onChange={(e) => {
+                          setComment(e.target.value);
+                        }}
+                        name="comment"
+                        id="comment"
+                        placeholder="Your Comment Here"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                        required={true}
+                        rows="5"
+                      />
+                    </div>
+                    {loadingCreateProductReview && <Loader />}
+                    <button
+                      disabled={loadingCreateProductReview}
+                      type="submit"
+                      className="w-full bg-ecom-3 text-white transition bg-opacity-50 hover:bg-opacity-100 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                    >
+                      Submit Review
+                    </button>
+                  </form>
+                ) : (
+                  <div className="p-4 bg-[#4f46e5] bg-opacity-75 mb-5 text-white font-bold rounded-lg">
+                    Please{" "}
+                    <Link to="/login" className="underline">
+                      Sign In
+                    </Link>{" "}
+                    to write a review
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </section>

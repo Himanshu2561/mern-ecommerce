@@ -9,7 +9,7 @@ const reviewSchema = new mongoose.Schema(
     },
     name: {
       type: String,
-      required: [true, "Please provide name"],
+      required: true,
     },
     rating: {
       type: Number,

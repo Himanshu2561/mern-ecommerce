@@ -24,36 +24,31 @@ router.post(
     if (!req.file) {
       res.status(404).json({ message: "No file uploaded" });
     } else {
-      try {
-        // Convert the buffer to a readable stream using 'stream' module
-        const stream = cloudinary.uploader.upload_stream(
-          {
-            folder: "mern_products",
-            allowed_formats: ["jpg", "jpeg", "png"],
-            width: 500,
-            crop: "scale",
-            resource_type: 'image',
-          },
-          (error, result) => {
-            if (error) {
-              console.log(error);
-              throw new Error("Server Error");
-            } else {
-              res.status(201).json({
-                message: "Image uploaded",
-                public_id: result.public_id,
-                url: result.secure_url,
-              }); // Return Cloudinary image URL
-            }
+      // Convert the buffer to a readable stream using 'stream' module
+      const stream = cloudinary.uploader.upload_stream(
+        {
+          folder: "mern_products",
+          allowed_formats: ["jpg", "jpeg", "png"],
+          width: 500,
+          crop: "scale",
+          resource_type: "image",
+        },
+        (error, result) => {
+          if (error) {
+            console.log(error);
+            throw new Error("Server Error");
+          } else {
+            res.status(201).json({
+              message: "Image uploaded",
+              public_id: result.public_id,
+              url: result.secure_url,
+            }); // Return Cloudinary image URL
           }
-        );
+        }
+      );
 
-        // Pipe the buffer to the stream
-        stream.end(req.file.buffer);
-      } catch (error) {
-        console.log(error);
-        throw new Error("Some error occured");
-      }
+      // Pipe the buffer to the stream
+      stream.end(req.file.buffer);
     }
   })
 );

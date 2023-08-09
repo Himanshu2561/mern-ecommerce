@@ -9,7 +9,7 @@ import {
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const OrderScreen = () => {
   const { id: orderId } = useParams();
@@ -26,7 +26,7 @@ const OrderScreen = () => {
   const [deliverOrder, { isLoading: loadingDeliver }] =
     useDeliverOrderMutation();
 
-  const [payOrder, { isLoading: lodingPay }] = usePayOrderMutation();
+  const [payOrder, { isLoading: lodingPayOrder }] = usePayOrderMutation();
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
@@ -69,11 +69,11 @@ const OrderScreen = () => {
     });
   }
 
-  async function onApproveTest() {
-    await payOrder({ orderId, details: { payer: {} } });
-    refetch();
-    toast.success("Payment Successful");
-  }
+  // async function onApproveTest() {
+  //   await payOrder({ orderId, details: { payer: {} } });
+  //   refetch();
+  //   toast.success("Payment Successful");
+  // }
 
   function onError(err) {
     toast.error(err?.data?.message || err.message);
@@ -182,7 +182,7 @@ const OrderScreen = () => {
                             />
                           </div>
                           <div className="underline">
-                            <Link to={`/products/${item._id}`}>
+                            <Link to={`/product/${item.product}`}>
                               {item.name}
                             </Link>
                           </div>

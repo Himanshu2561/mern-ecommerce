@@ -53,9 +53,11 @@ const Rating = ({ value, text }) => {
           </span>
         </div>
       </Link>
-      <Link>
-        <span className="font-semibold">{text && text} reviews</span>
-      </Link>
+      {text && (
+        <Link>
+          <span className="font-semibold">{text && text} reviews</span>
+        </Link>
+      )}
     </div>
   );
 };
