@@ -8,6 +8,7 @@ import {
   useGetUsersQuery,
   useDeleteUserMutation,
 } from "../../slices/usersApiSlice";
+import Meta from "../../components/Meta";
 
 const UserListScreen = () => {
   const { data: users, isLoading, error, refetch } = useGetUsersQuery();
@@ -34,6 +35,7 @@ const UserListScreen = () => {
 
   return (
     <div className="container min-h-screen mt-10 mx-auto">
+      <Meta title={"Ecommerce - All Users"} />
       <div className="flex justify-between items-center border-b text-xl text-gray-800 font-bold uppercase py-1">
         <div>Products</div>
       </div>

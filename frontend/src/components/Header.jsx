@@ -5,6 +5,7 @@ import { FaAngleDown, FaTimes } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
+import SearchBox from "./SearchBox";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
@@ -42,20 +43,9 @@ const Header = () => {
           />
           <span className="ml-3 text-xl cursor-pointer">Ecommerce</span>
         </Link>
-        <nav className="mr-auto ml-4 py-1 pl-4 border-l border-gray-700 sm:border-none sm:m-auto	flex flex-wrap items-center text-base justify-center sm:hidden">
-          <Link className="mr-5 cursor-pointer hover:text-ecom-3">
-            First Link
-          </Link>
-          <Link className="mr-5 cursor-pointer hover:text-ecom-3">
-            Second Link
-          </Link>
-          <Link className="mr-5 cursor-pointer hover:text-ecom-3">
-            Third Link
-          </Link>
-          <Link className="mr-5 cursor-pointer hover:text-ecom-3">
-            Fourth Link
-          </Link>
-        </nav>
+        <div className="mr-auto ml-4 pl-4 border-l border-gray-700 sm:border-none sm:m-auto	flex flex-wrap items-center text-base justify-center sm:hidden">
+          <SearchBox />
+        </div>
         <div className="flex items-center gap-5 sm:hidden">
           <Link to="/cart">
             <div className="w-11 h-11 relative">

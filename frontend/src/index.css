@@ -19,6 +19,18 @@
   display: flex;
 }
 
+.slick-dots {
+  bottom: -2rem;
+}
+
+.slick-dots li button::before {
+  font-size: 12px;
+  color: #003cff;
+}
+.slick-dots li.slick-active button::before {
+  color: #003cff;
+}
+
 .paginate-contain {
   display: flex;
   justify-content: center;

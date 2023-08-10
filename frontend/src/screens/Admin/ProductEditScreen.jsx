@@ -8,6 +8,7 @@ import {
 import Loader from "../../components/Loader";
 import { toast } from "react-toastify";
 import { BiLeftArrowCircle } from "react-icons/bi";
+import Meta from "../../components/Meta";
 
 const ProductEditScreen = () => {
   const { id: productId } = useParams();
@@ -96,6 +97,7 @@ const ProductEditScreen = () => {
 
   return (
     <div className="container max-w-screen-lg mx-auto">
+      <Meta title={"Ecommerce - Edit Product"} />
       <div className="py-5 text-gray-600">
         <Link to="/admin/productlist">
           <BiLeftArrowCircle className="w-10 h-10" />

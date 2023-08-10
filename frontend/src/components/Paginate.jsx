@@ -1,10 +1,31 @@
 import ReactPaginate from "react-paginate";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const Paginate = ({ pages, onProductList = false, onPageChange }) => {
-  const handlePageChange = (selectedPage, onProductList) => {
+const Paginate = ({ pages, isAdmin = false, keyword = "" }) => {
+  const navigate = useNavigate();
+
+  const onPageChange = (selectedPage) => {
+    // Transforming from zero-based index to one-based index
+
+    navigate(
+      !isAdmin
+        ? keyword
+          ? `/search/${keyword}/page/${selectedPage}`
+          : `/page/${selectedPage}`
+        : `/admin/productlist/page/${selectedPage}`
+    );
+
+    // if (isAdmin) {
+    //   navigate("/admin/productlist/page/" + selectedPage);
+    // } else {
+    //   navigate("/page/" + selectedPage);
+    // }
+  };
+
+  const handlePageChange = (selectedPage) => {
     // Transforming from one-based index to zero-based index
-    onPageChange(Number(selectedPage.selected + 1), onProductList);
+    onPageChange(Number(selectedPage.selected + 1));
   };
 
   return (
@@ -24,7 +45,7 @@ const Paginate = ({ pages, onProductList = false, onPageChange }) => {
           previousClassName="prev"
           nextClassName="next"
           disabledClassName="dis-corner"
-          onPageChange={(e) => handlePageChange(e, onProductList)}
+          onPageChange={(e) => handlePageChange(e)}
         />
       </div>
     )

@@ -6,6 +6,7 @@ import { clearCartItems } from "../slices/cartSlice";
 import { toast } from "react-toastify";
 import CheckoutSteps from "../components/CheckoutSteps";
 import Loader from "../components/Loader";
+import Meta from "../components/Meta";
 
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart);
@@ -44,6 +45,7 @@ const PlaceOrderScreen = () => {
 
   return (
     <div className="p-6 bg-gray-100 flex flex-col items-center justify-center">
+      <Meta title={"Ecommerce - Place Your Order"} />
       <div>
         <CheckoutSteps step1 step2 step3 step4 />
       </div>

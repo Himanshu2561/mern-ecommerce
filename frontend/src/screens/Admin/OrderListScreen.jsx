@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FaTimes } from "react-icons/fa";
 import Loader from "../../components/Loader";
 import { useGetOrdersQuery } from "../../slices/ordersApiSlice";
+import Meta from "../../components/Meta";
 
 const OrderListScreen = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
@@ -22,6 +23,7 @@ const OrderListScreen = () => {
             Orders
           </div>
           <div className="relative overflow-x-auto shadow-md rounded-lg flex flex-col justify-center items-center mb-10 mt-5">
+            <Meta title={"Ecommerce - All Orders"} />
             <table className="w-full text-left text-gray-500">
               <thead className="text-gray-700 uppercase bg-gray-50">
                 <tr>

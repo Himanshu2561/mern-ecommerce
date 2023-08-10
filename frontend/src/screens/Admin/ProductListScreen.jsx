@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { BiTrash } from "react-icons/bi";
 import { AiOutlineEdit } from "react-icons/ai";
 import Loader from "../../components/Loader";
@@ -9,11 +9,10 @@ import {
   useDeleteProductMutation,
 } from "../../slices/productsApiSlice";
 import Paginate from "../../components/Paginate";
+import Meta from "../../components/Meta";
 
 const ProductListScreen = () => {
   const { pageNumber } = useParams();
-
-  const navigate = useNavigate();
 
   const { data, isLoading, error, refetch } = useGetProductsQuery({
     pageNumber,
@@ -48,17 +47,9 @@ const ProductListScreen = () => {
     }
   };
 
-  const onPageChange = (selectedPage, onProductList) => {
-    // Transforming from zero-based index to one-based index
-    if (onProductList) {
-      navigate("/admin/productlist/page/" + selectedPage);
-    } else {
-      navigate("/page/" + selectedPage);
-    }
-  };
-
   return (
     <div className="container min-h-screen mt-10 mx-auto">
+      <Meta title={"Ecommerce - All Products"} />
       <div className="flex justify-between items-center border-b text-xl text-gray-800 font-bold uppercase py-1">
         <div>Products</div>
         <div
@@ -140,11 +131,7 @@ const ProductListScreen = () => {
               </tbody>
             </table>
           </div>
-          <Paginate
-            pages={data.pages}
-            onPageChange={onPageChange}
-            onProductList={true}
-          />
+          <Paginate pages={data.pages} isAdmin={true} />
         </>
       )}
     </div>

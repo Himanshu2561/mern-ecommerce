@@ -29,7 +29,7 @@ router.post(
         {
           folder: "mern_products",
           allowed_formats: ["jpg", "jpeg", "png"],
-          width: 500,
+          width: 1440,
           crop: "scale",
           resource_type: "image",
         },

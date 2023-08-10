@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { savePaymentMethod } from "../slices/cartSlice";
 import CheckoutSteps from "../components/CheckoutSteps";
+import Meta from "../components/Meta";
 
 const PaymentScreen = () => {
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
@@ -27,6 +28,7 @@ const PaymentScreen = () => {
 
   return (
     <div className="p-6 bg-gray-100 flex flex-col items-center justify-center">
+      <Meta title={'Ecommerce - Make Payment'}/>
       <div>
         <CheckoutSteps step1 step2 step3 />
       </div>

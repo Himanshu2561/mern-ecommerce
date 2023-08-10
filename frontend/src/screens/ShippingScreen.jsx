@@ -1,9 +1,11 @@
 import CheckoutSteps from "../components/CheckoutSteps";
+import Meta from "../components/Meta";
 import ShippingForm from "../components/ShippingForm";
 
 const ShippingScreen = () => {
   return (
     <div className="p-6 bg-gray-100 flex flex-col items-center justify-center">
+      <Meta title={"Ecommerce - Shipping"} />
       <div>
         <CheckoutSteps step1 step2 />
       </div>

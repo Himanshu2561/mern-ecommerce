@@ -15,6 +15,7 @@ import {
 } from "react-icons/bi";
 import { toast } from "react-toastify";
 import Reviews from "../components/Reviews";
+import Meta from "../components/Meta";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -76,6 +77,7 @@ const ProductScreen = () => {
         <div>{isError?.data?.message || isError.error}</div>
       ) : (
         <section className="text-gray-600 body-font overflow-hidden">
+          <Meta title={product.name} />
           <div className="container px-5 py-24 mx-auto">
             <div className="w-4/5 mx-auto">
               <Link to="/">
@@ -151,9 +153,7 @@ const ProductScreen = () => {
             </div>
             <div className="w-4/5 mx-auto flex flex-wrap">
               <div className="w-1/2 flex flex-col gap-y-5 sm:w-full pr-10 py-6 mb-6 sm:mb-0">
-                <div className="text-xl font-bold border-b pb-1">
-                  Reviews
-                </div>
+                <div className="text-xl font-bold border-b pb-1">Reviews</div>
                 {product.reviews.length === 0 && (
                   <div className="p-4 bg-[#4f46e5] bg-opacity-75 mb-5 text-white font-bold rounded-lg">
                     No Reviews Yet

@@ -7,6 +7,7 @@ import { useProfileMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import ProfileOrders from "../components/ProfileOrders";
 import { useGetMyOrdersQuery } from "../slices/ordersApiSlice";
+import Meta from "../components/Meta";
 
 const ProfileScreen = () => {
   const [disableName, setDisableName] = useState(true);
@@ -67,6 +68,7 @@ const ProfileScreen = () => {
 
   return (
     <div className="container pt-20 h-[80vh] mx-auto flex justify-center gap-x-4">
+      <Meta title={"Ecommerce - My Profile"} />
       <div className="w-fit px-5">
         <div className="text-lg mb-5 border-b font-bold text-gray-700 uppercase">
           Update User Profile

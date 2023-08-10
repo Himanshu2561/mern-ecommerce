@@ -2,12 +2,14 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartRows from "../components/CartRows";
 import CartTotal from "../components/CartTotal";
+import Meta from "../components/Meta";
 
 const CartScreen = () => {
   const { cartItems } = useSelector((state) => state.cart);
 
   return (
     <div className="container mx-auto px-10">
+      <Meta title={'Ecommerce - Cart'}/>
       <div className="py-10">
         <div className="text-2xl font-bold text-gray-600 flex items-baseline gap-5">
           <div>Shopping cart</div>

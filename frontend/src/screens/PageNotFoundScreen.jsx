@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import Meta from "../components/Meta";
 
 const PageNotFound = () => {
   return (
     <div className="_404 absolute top-0 overflow-hidden min-h-screen min-w-full text-center bg-white flex justify-center items-center">
+      <Meta title={'404 - Page Not Found'}/>
       <div className="flex flex-col justify-between items-center gap-5 w-[800px]">
         <div className="font-bold text-[12rem]">
           Oops!

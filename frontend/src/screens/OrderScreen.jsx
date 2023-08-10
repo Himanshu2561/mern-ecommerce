@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
+import Meta from "../components/Meta";
 
 const OrderScreen = () => {
   const { id: orderId } = useParams();
@@ -113,6 +114,7 @@ const OrderScreen = () => {
     <div>{error.data.message}</div>
   ) : (
     <div className="p-6 bg-gray-100 flex flex-col items-center justify-center">
+      <Meta title={'Ecommerce - Order Product'}/>
       <div className="container mx-auto px-10">
         <div className="py-10">
           <div className="flex gap-5 justify-between">

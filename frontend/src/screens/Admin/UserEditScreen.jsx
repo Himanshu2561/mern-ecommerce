@@ -8,6 +8,7 @@ import {
   useUpdateUserMutation,
 } from "../../slices/usersApiSlice";
 import { useSelector } from "react-redux";
+import Meta from "../../components/Meta";
 
 const UserEditScreen = () => {
   const { id: userId } = useParams();
@@ -59,6 +60,7 @@ const UserEditScreen = () => {
 
   return (
     <div className="container max-w-screen-lg mx-auto">
+      <Meta title={"Ecommerce - Edit Users"} />
       <div className="py-5 text-gray-600">
         <Link to="/admin/userlist">
           <BiLeftArrowCircle className="w-10 h-10" />
