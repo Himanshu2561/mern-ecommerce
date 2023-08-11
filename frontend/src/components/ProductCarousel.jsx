@@ -2,7 +2,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
-import Loader from "./Loader";
 import { useGetTopProductsQuery } from "../slices/productsApiSlice";
 
 const ProductCarousel = () => {
@@ -34,7 +33,9 @@ const ProductCarousel = () => {
     pauseOnHover: false,
   };
 
-  return !isLoading ? (
+  return isLoading ? null : error ? (
+    <div>{error?.data?.message || error.error}</div>
+  ) : (
     <Slider
       className="container w-[1440px] bg-white mx-auto mt-10 rounded-xl p-5 text-center"
       {...settings}
@@ -52,8 +53,6 @@ const ProductCarousel = () => {
         </Link>
       ))}
     </Slider>
-  ) : (
-    <Loader />
   );
 };
 

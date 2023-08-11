@@ -12,6 +12,7 @@ const Products = ({ item }) => {
           alt="ecommerce"
           className="object-cover object-center w-full h-full block"
           src={item.image.url}
+          loading="lazy"
         />
       </Link>
       <div className="mt-4">
@@ -24,7 +25,9 @@ const Products = ({ item }) => {
         <div className="mt-1">
           <Rating value={item.rating} text={item.numReviews} />
         </div>
-        <p className="mt-1 font-bold"><span className="text-green-500">$</span> {item.price}</p>
+        <p className="mt-1 font-bold">
+          <span className="text-green-500">$</span> {item.price}
+        </p>
       </div>
     </div>
   );
