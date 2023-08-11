@@ -166,7 +166,7 @@ const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
   if (user) {
-    if (user._id.toString() === req.params.id.toString()) {
+    if (req.user._id.toString() === req.params.id.toString()) {
       res.status(400);
       throw new Error("You yourself cannot revoke admin as admin");
     } else {
