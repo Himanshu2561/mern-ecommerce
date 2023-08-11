@@ -7,7 +7,7 @@ import Order from "../models/orderModel.js";
 // @route   GET /api/products
 // @access  Public
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 10;
+  const pageSize = process.env.PAGE_SIZE;
   const page = Number(req.query.pageNumber) || 1;
 
   //Filter according name

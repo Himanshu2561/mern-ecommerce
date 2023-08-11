@@ -36,7 +36,7 @@ const ProductCarousel = () => {
 
   return !isLoading ? (
     <Slider
-      className="container w-[1440px] bg-ecom-4 mx-auto mt-10 rounded-xl p-5 text-center"
+      className="container w-[1440px] bg-white mx-auto mt-10 rounded-xl p-5 text-center"
       {...settings}
     >
       {products.map((item) => (

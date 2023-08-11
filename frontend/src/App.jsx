@@ -27,7 +27,14 @@ function App() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    console.log(pathname);
+
+    // Check if pathname starts with '/page/'
+    if (pathname.startsWith("/page/")) {
+      window.scrollTo({ top: 800, behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }, [pathname]);
 
   return (

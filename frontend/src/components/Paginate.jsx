@@ -15,12 +15,6 @@ const Paginate = ({ pages, isAdmin = false, keyword = "" }) => {
           : `/page/${selectedPage}`
         : `/admin/productlist/page/${selectedPage}`
     );
-
-    // if (isAdmin) {
-    //   navigate("/admin/productlist/page/" + selectedPage);
-    // } else {
-    //   navigate("/page/" + selectedPage);
-    // }
   };
 
   const handlePageChange = (selectedPage) => {
