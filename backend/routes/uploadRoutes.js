@@ -3,6 +3,7 @@ import express from "express";
 import multer from "multer";
 import { v2 as cloudinary } from "cloudinary";
 import asyncHandler from "../middleware/asyncHandler.js";
+import Product from "../models/productModel.js";
 dotenv.config();
 const router = express.Router();
 
@@ -18,12 +19,18 @@ const upload = multer(); // Initialize multer without storage (store in memory)
 
 // Upload route
 router.post(
-  "/",
+  "/:id",
   upload.single("image"),
   asyncHandler(async (req, res) => {
     if (!req.file) {
       res.status(404).json({ message: "No file uploaded" });
     } else {
+      const product = await Product.findById(req.params.id);
+
+      if (product.image.public_id) {
+        await cloudinary.uploader.destroy(product.image.public_id); // Delete the image using the public_id
+      }
+
       // Convert the buffer to a readable stream using 'stream' module
       const stream = cloudinary.uploader.upload_stream(
         {

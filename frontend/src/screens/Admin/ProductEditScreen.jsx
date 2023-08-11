@@ -31,7 +31,7 @@ const ProductEditScreen = () => {
   } = useGetProductDetailsQuery(productId);
 
   const [updateProduct, { isLoading: loadingUpdate }] =
-    useUpdateProductMutation(productId);
+    useUpdateProductMutation();
 
   const [uploadProductImage, { isLoading: loadingUpload }] =
     useUploadProductImageMutation();
@@ -83,7 +83,10 @@ const ProductEditScreen = () => {
         formData.append("image", imageFile);
 
         try {
-          const res = await uploadProductImage(formData).unwrap();
+          const res = await uploadProductImage({
+            formData,
+            productId,
+          }).unwrap();
           toast.success(res.message);
           setImage({ public_id: res.public_id, url: res.url });
         } catch (err) {
@@ -98,14 +101,14 @@ const ProductEditScreen = () => {
   return (
     <div className="container max-w-screen-lg mx-auto">
       <Meta title={"Ecommerce - Edit Product"} />
-      <div className="py-5 text-gray-600">
+      <div className="py-5 text-indigo-500">
         <Link to="/admin/productlist">
           <BiLeftArrowCircle className="w-10 h-10" />
         </Link>
       </div>
       <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-10">
         <div className="grid gap-4 gap-y-2 text-sm sm:grid-cols-1 grid-cols-3">
-          <div className="text-gray-600">
+          <div className="text-indigo-500">
             <p className="font-medium text-lg">Edit Product</p>
             <p>Please edit all the fields correctly.</p>
           </div>
@@ -121,7 +124,7 @@ const ProductEditScreen = () => {
             ) : (
               <div className="grid gap-4 gap-y-4 text-sm grid-cols-1 md:grid-cols-5">
                 <div className="md:col-span-3">
-                  <label className="font-medium text-gray-900">Name</label>
+                  <label className="font-medium text-gray-600">Name</label>
                   <input
                     onChange={(e) => setName(e.target.value)}
                     type="text"
@@ -133,7 +136,7 @@ const ProductEditScreen = () => {
                 </div>
 
                 <div className="md:col-span-3">
-                  <label className="font-medium text-gray-900">Price</label>
+                  <label className="font-medium text-gray-600">Price</label>
                   <input
                     onChange={(e) => setPrice(e.target.value)}
                     type="number"
@@ -145,11 +148,11 @@ const ProductEditScreen = () => {
                 </div>
 
                 <div className="md:col-span-1">
-                  <label className="block mb-2 font-medium text-gray-900">
+                  <label className="block mb-2 font-medium text-gray-600">
                     Upload Image
                   </label>
                   <input
-                    className="block w-full text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-gray-50 focus:outline-none"
+                    className="block w-full text-gray-600 border border-gray-300 rounded-md cursor-pointer bg-gray-50 focus:outline-none"
                     aria-describedby="file_input_help"
                     id="file_input"
                     type="file"
@@ -162,7 +165,7 @@ const ProductEditScreen = () => {
                   <div className="flex mt-2 gap-x-4">
                     <button
                       type="button"
-                      className="w-20 mt-2 bg-ecom-3 bg-opacity-75 px-2 py-1 text-white font-bold rounded-md hover:bg-opacity-100"
+                      className="w-20 bg-indigo-500 px-2 py-1 text-white font-bold rounded-sm hover:bg-indigo-600"
                       onClick={uploadFileHandler}
                     >
                       Upload
@@ -172,7 +175,7 @@ const ProductEditScreen = () => {
                 </div>
 
                 <div className="md:col-span-1">
-                  <label className="font-medium text-gray-900">Brand</label>
+                  <label className="font-medium text-gray-600">Brand</label>
                   <input
                     onChange={(e) => setBrand(e.target.value)}
                     type="text"
@@ -184,7 +187,7 @@ const ProductEditScreen = () => {
                 </div>
 
                 <div className="md:col-span-1">
-                  <label className="font-medium text-gray-900">
+                  <label className="font-medium text-gray-600">
                     Count In Stock
                   </label>
                   <input
@@ -198,7 +201,7 @@ const ProductEditScreen = () => {
                 </div>
 
                 <div className="md:col-span-1">
-                  <label className="font-medium text-gray-900">Category</label>
+                  <label className="font-medium text-gray-600">Category</label>
                   <input
                     onChange={(e) => setCategory(e.target.value)}
                     type="text"
@@ -210,7 +213,7 @@ const ProductEditScreen = () => {
                 </div>
 
                 <div className="md:col-span-1">
-                  <label className="font-medium text-gray-900">
+                  <label className="font-medium text-gray-600">
                     Description
                   </label>
                   <textarea
@@ -229,7 +232,7 @@ const ProductEditScreen = () => {
                   <div className="inline-flex items-end">
                     <button
                       type="submit"
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
                     >
                       Update
                     </button>

@@ -46,7 +46,7 @@ const PaymentScreen = () => {
                 value="PayPal"
                 name="list-radio"
                 defaultChecked
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+                className="w-4 h-4 text-indigo-500 bg-gray-100 border-gray-300"
               />
               <label
                 htmlFor="horizontal-list-radio-paypal"
@@ -65,7 +65,7 @@ const PaymentScreen = () => {
                 value="Stripe"
                 disabled
                 name="list-radio"
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+                className="w-4 h-4 text-indigo-500 bg-gray-100 border-gray-300"
               />
               <label
                 htmlFor="horizontal-list-radio-stripe"
@@ -84,7 +84,7 @@ const PaymentScreen = () => {
                 value="UPI"
                 disabled
                 name="list-radio"
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+                className="w-4 h-4 text-indigo-500 bg-gray-100 border-gray-300"
               />
               <label
                 htmlFor="horizontal-list-radio-upi"
@@ -98,7 +98,7 @@ const PaymentScreen = () => {
         <div className="flex justify-center items-center mt-10">
           <button
             type="submit"
-            className="px-5 py-1 text-black bg-opacity-50 font-semibold text-lg hover:bg-opacity-75 bg-ecom-3 rounded-md"
+            className="px-5 py-1 text-white font-semibold text-lg  bg-indigo-500 hover:bg-indigo-600 rounded-md"
           >
             Continue
           </button>

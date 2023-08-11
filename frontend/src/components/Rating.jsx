@@ -5,7 +5,7 @@ const Rating = ({ value, text }) => {
   return (
     <div className="flex justify-between items-center">
       <Link>
-        <div className="flex gap-1">
+        <div className="flex gap-1 text-yellow-300">
           <span>
             {value >= 1 ? (
               <FaStar />

@@ -47,13 +47,13 @@ const SearchBox = () => {
           value={keyword}
           type="search"
           id="default-search"
-          className="block w-[30rem] h-11 p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+          className="block w-[30rem] h-11 p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg outline-none bg-gray-50"
           placeholder="Search Phone, Watch..."
           required
         />
         <button
           type="submit"
-          className="text-white absolute right-1 bottom-1 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2"
+          className="text-white absolute right-0 bottom-0 top-0 bg-ecom-3 bg-opacity-75 hover:bg-opacity-100 font-medium rounded-r-lg text-sm px-4 py-2"
         >
           Search
         </button>

@@ -79,7 +79,7 @@ const ProductScreen = () => {
         <section className="text-gray-600 body-font overflow-hidden">
           <Meta title={product.name} />
           <div className="container px-5 py-24 mx-auto">
-            <div className="w-4/5 mx-auto">
+            <div className="w-4/5 mx-auto text-indigo-500">
               <Link to="/">
                 <BiLeftArrowCircle className="w-8 h-8" />
               </Link>
@@ -155,7 +155,7 @@ const ProductScreen = () => {
               <div className="w-1/2 flex flex-col gap-y-5 sm:w-full pr-10 py-6 mb-6 sm:mb-0">
                 <div className="text-xl font-bold border-b pb-1">Reviews</div>
                 {product.reviews.length === 0 && (
-                  <div className="p-4 bg-[#4f46e5] bg-opacity-75 mb-5 text-white font-bold rounded-lg">
+                  <div className="p-4 bg-ecom-3 bg-opacity-75 mb-5 text-white font-bold rounded-lg">
                     No Reviews Yet
                   </div>
                 )}
@@ -226,13 +226,13 @@ const ProductScreen = () => {
                     <button
                       disabled={loadingCreateProductReview}
                       type="submit"
-                      className="w-full bg-ecom-3 text-white transition bg-opacity-50 hover:bg-opacity-100 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                      className="w-full bg-ecom-3 text-white transition hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                     >
                       Submit Review
                     </button>
                   </form>
                 ) : (
-                  <div className="p-4 bg-[#4f46e5] bg-opacity-75 mb-5 text-white font-bold rounded-lg">
+                  <div className="p-4 bg-ecom-3 hover:bg-indigo-600 mb-5 text-white font-bold rounded-lg">
                     Please{" "}
                     <Link to="/login" className="underline">
                       Sign In

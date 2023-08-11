@@ -16,25 +16,27 @@ const HomeScreen = () => {
 
   return (
     <div>
-      <Meta/>
+      <Meta />
       {!keyword && (
         <div>
           <h1 className="container mx-auto px-10 sm:px-5 mt-10 sm:py-5 font-semibold text-ecom-2 text-2xl">
-            <span>Top Products</span>
+            <div className="border-b-2 border-indigo-500 pb-2 w-full text-indigo-500">
+              Top Products
+            </div>
             <ProductCarousel />
           </h1>
         </div>
       )}
-      <div>
-        <h1 className="container mx-auto px-10 sm:px-5 mt-10 sm:py-5 font-semibold text-ecom-2 text-2xl flex justify-between items-center">
-          <span>Latest Products</span>
-          {keyword && (
-            <Link to="/" className="text-lg text-gray-600">
-              Go Back
-            </Link>
-          )}
-        </h1>
-      </div>
+      <h1 className="container mx-auto px-10 sm:px-5 mt-20 sm:py-5 font-semibold text-ecom-2 text-2xl flex justify-between items-center">
+        <div className="border-b-2 border-indigo-500 pb-2 w-full text-indigo-500">
+          Latest Products
+        </div>
+        {keyword && (
+          <Link to="/" className="text-lg text-gray-600">
+            Go Back
+          </Link>
+        )}
+      </h1>
       <section className="text-gray-600 body-font">
         <div className="container px-10 sm:px-5 py-10 sm:py-5 mx-auto">
           {isLoading ? (

@@ -59,16 +59,16 @@ const UserEditScreen = () => {
   };
 
   return (
-    <div className="container max-w-screen-lg mx-auto">
+    <div className="container h-[80vh] pt-10 max-w-screen-lg mx-auto">
       <Meta title={"Ecommerce - Edit Users"} />
-      <div className="py-5 text-gray-600">
+      <div className="py-5 text-indigo-500">
         <Link to="/admin/userlist">
           <BiLeftArrowCircle className="w-10 h-10" />
         </Link>
       </div>
       <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-10">
         <div className="grid gap-4 gap-y-2 text-sm sm:grid-cols-1 grid-cols-3">
-          <div className="text-gray-600">
+          <div className="text-indigo-500">
             <p className="font-medium text-lg">Edit User</p>
             <p>Please edit all the fields correctly.</p>
           </div>
@@ -84,7 +84,7 @@ const UserEditScreen = () => {
             ) : (
               <div className="grid gap-4 gap-y-4 text-sm grid-cols-1 md:grid-cols-5">
                 <div className="md:col-span-3">
-                  <label className="font-medium text-gray-900">Name</label>
+                  <label className="font-medium text-gray-600">Name</label>
                   <input
                     onChange={(e) => setName(e.target.value)}
                     type="text"
@@ -96,7 +96,7 @@ const UserEditScreen = () => {
                 </div>
 
                 <div className="md:col-span-3">
-                  <label className="font-medium text-gray-900">Email</label>
+                  <label className="font-medium text-gray-600">Email</label>
                   <input
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
@@ -115,11 +115,11 @@ const UserEditScreen = () => {
                     id="bordered-checkbox-2"
                     type="checkbox"
                     name="bordered-checkbox"
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded"
+                    className="w-4 h-4 text-indigo-500 bg-gray-100 border-gray-300 rounded outline-none"
                   />
                   <label
                     htmlFor="bordered-checkbox-2"
-                    className="w-full py-4 ml-2 text-sm font-medium text-gray-900"
+                    className="w-full py-4 ml-2 text-sm font-medium text-gray-600"
                   >
                     Admin
                   </label>
@@ -131,7 +131,7 @@ const UserEditScreen = () => {
                   <div className="inline-flex items-end">
                     <button
                       type="submit"
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded"
                     >
                       Update
                     </button>

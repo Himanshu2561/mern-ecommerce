@@ -36,8 +36,8 @@ const UserListScreen = () => {
   return (
     <div className="container min-h-screen mt-10 mx-auto">
       <Meta title={"Ecommerce - All Users"} />
-      <div className="flex justify-between items-center border-b text-xl text-gray-800 font-bold uppercase py-1">
-        <div>Products</div>
+      <div className="flex justify-between items-center border-b-2 border-indigo-500 text-xl text-indigo-500 font-bold uppercase py-1">
+        <div>Users</div>
       </div>
 
       {loadingDelete && (
@@ -57,7 +57,7 @@ const UserListScreen = () => {
       ) : (
         <div className="relative overflow-x-auto shadow-md rounded-lg flex flex-col justify-center items-center mb-10 mt-5">
           <table className="w-full text-sm text-left text-gray-500">
-            <thead className="text-gray-700 uppercase bg-gray-50">
+            <thead className="text-indigo-500 uppercase bg-gray-50">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   ID
@@ -77,9 +77,7 @@ const UserListScreen = () => {
             <tbody>
               {users.map((user) => (
                 <tr key={user._id} className="bg-white border-b">
-                  <th scope="row" className="px-6 py-4">
-                    {user._id}
-                  </th>
+                  <td className="px-6 py-4">{user._id}</td>
                   <td className="px-6 py-4">{user.name}</td>
                   <td className="px-6 py-4">
                     <a href={`mailto:${user.email}`}>{user.email}</a>
@@ -93,7 +91,7 @@ const UserListScreen = () => {
                   </td>
                   <td className="px-6 py-4 flex justify-between items-center">
                     <Link to={`/admin/user/${user._id}/edit`}>
-                      <AiOutlineEdit className="cursor-pointer" />
+                      <AiOutlineEdit className="text-indigo-500 cursor-pointer" />
                     </Link>
                     <button onClick={() => deleteUserHandler(user._id)}>
                       <BiTrash className="text-red-500 cursor-pointer" />

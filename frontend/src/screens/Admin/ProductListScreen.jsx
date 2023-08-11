@@ -50,16 +50,16 @@ const ProductListScreen = () => {
   return (
     <div className="container min-h-screen mt-10 mx-auto">
       <Meta title={"Ecommerce - All Products"} />
-      <div className="flex justify-between items-center border-b text-xl text-gray-800 font-bold uppercase py-1">
+      <div className="flex justify-between text-indigo-500 items-center border-b-2 border-indigo-500 text-xl font-bold uppercase py-1">
         <div>Products</div>
         <div
           onClick={createProductHandler}
           className="flex items-center justify-center gap-2 cursor-pointer text-base"
         >
-          <div>
+          <div className="text-green-500">
             <AiOutlineEdit />
           </div>
-          <div>Create New Product</div>
+          <div className="text-indigo-500">Create New Product</div>
         </div>
       </div>
       {loadingCreate && (
@@ -84,7 +84,7 @@ const ProductListScreen = () => {
         <>
           <div className="relative overflow-x-auto shadow-md rounded-lg flex flex-col justify-center items-center mb-10 mt-5">
             <table className="w-full text-sm text-left text-gray-500">
-              <thead className="text-gray-700 uppercase bg-gray-50">
+              <thead className="uppercase bg-gray-50 text-indigo-500">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     ID
@@ -95,7 +95,7 @@ const ProductListScreen = () => {
                   <th scope="col" className="px-6 py-3">
                     PRICE ($)
                   </th>
-                  <th scope="col" align="center" className="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     CATEGORY
                   </th>
                   <th scope="col" className="px-6 py-3">
@@ -107,20 +107,14 @@ const ProductListScreen = () => {
               <tbody>
                 {data.products.map((product) => (
                   <tr key={product._id} className="bg-white border-b">
-                    <th scope="row" className="px-6 py-4">
-                      {product._id}
-                    </th>
+                    <td className="px-6 py-4">{product._id}</td>
                     <td className="px-6 py-4">{product.name}</td>
                     <td className="px-6 py-4">{product.price}</td>
-                    <td align="center" className="px-6 py-4">
-                      <div className="flex w-20 justify-evenly items-center">
-                        {product.category}
-                      </div>
-                    </td>
+                    <td className="px-6 py-4">{product.category}</td>
                     <td className="px-6 py-4">{product.brand}</td>
                     <td className="px-6 py-4 flex justify-between items-center">
                       <Link to={`/admin/product/${product._id}/edit`}>
-                        <AiOutlineEdit className="cursor-pointer" />
+                        <AiOutlineEdit className="cursor-pointer text-indigo-500" />
                       </Link>
                       <button onClick={() => deleteProductHandler(product._id)}>
                         <BiTrash className="text-red-500 cursor-pointer" />

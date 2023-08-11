@@ -120,7 +120,7 @@ const OrderScreen = () => {
           <div className="flex gap-5 justify-between">
             <div className="w-[70%] bg-white h-[10%] rounded-lg">
               <div className="relative overflow-x-auto shadow-md rounded-lg">
-                <div className="text-2xl text-gray-600 border-b p-5">
+                <div className="text-2xl text-gray-500 border-b p-5">
                   <div className="pb-4 font-bold">Shipping</div>
                   <div className="flex flex-col gap-2">
                     <div className="text-sm text-gray-500">
@@ -139,33 +139,33 @@ const OrderScreen = () => {
                       {order?.shippingAddress.country}
                     </div>
                     {order?.isDelivered ? (
-                      <div className="py-2 px-4 w-full rounded-md bg-green-500 bg-opacity-50 mt-4 text-green-500 text-sm">
+                      <div className="py-2 px-4 w-full rounded-md bg-green-500 bg-opacity-50 mt-4 text-white font-semibold text-sm">
                         Delivered on: {order?.deliveredAt.substring(0, 10)}
                       </div>
                     ) : (
-                      <div className="py-2 px-4 w-full border rounded-md bg-red-500 bg-opacity-50 mt-4 text-red-500 text-sm">
+                      <div className="py-2 px-4 w-full border rounded-md bg-red-500 bg-opacity-50 mt-4 text-white font-semibold text-sm">
                         Not Delivered
                       </div>
                     )}
                   </div>
                 </div>
-                <div className="text-2xl text-gray-600 border-b p-5">
+                <div className="text-2xl text-gray-500 border-b p-5">
                   <div className="pb-4 font-bold">Payment</div>
                   <div className="text-sm text-gray-500">
                     <span className="font-semibold">Method: </span>
                     {order?.paymentMethod}
                   </div>
                   {order?.isPaid ? (
-                    <div className="py-2 px-4 w-full rounded-md bg-green-500 bg-opacity-50 mt-4 text-green-500 text-sm">
+                    <div className="py-2 px-4 w-full rounded-md bg-green-500 bg-opacity-50 mt-4 text-white font-semibold text-sm">
                       Paid on: {order?.paidAt.substring(0, 10)}
                     </div>
                   ) : (
-                    <div className="py-2 px-4 w-full border rounded-md bg-red-500 bg-opacity-50 mt-4 text-red-500 text-sm">
+                    <div className="py-2 px-4 w-full border rounded-md bg-red-500 bg-opacity-50 mt-4 text-white font-semibold text-sm">
                       Not Paid
                     </div>
                   )}
                 </div>
-                <div className="text-2xl font-bold text-gray-600 p-5">
+                <div className="text-2xl font-bold text-gray-500 p-5">
                   <div>Order Items</div>
                 </div>
                 <table className="w-full text-sm text-left text-gray-500">
@@ -200,26 +200,26 @@ const OrderScreen = () => {
             </div>
             <div className="w-[30%] bg-ecom-4 h-[10%] rounded-lg sticky top-2">
               <div className="bg-gray-50 p-4 shadow-lg rounded-lg text-gray-600">
-                <div className="font-bold text-xl border-b py-2">
+                <div className="font-bold text-xl border-b-2 border-indigo-500 py-2 text-indigo-500">
                   Order Summary
                 </div>
-                <div className="py-4 border-b">
+                <div className="py-4 border-b-2 border-indigo-500">
                   <div className="flex justify-between items-center py-1">
                     <div>Items</div>
-                    <div className="font-semibold">${order?.itemPrice}</div>
+                    <div className="font-semibold">$ {order?.itemPrice}</div>
                   </div>
                   <div className="flex justify-between items-center py-1">
                     <div>Shipping</div>
-                    <div className="font-semibold">${order?.shippingPrice}</div>
+                    <div className="font-semibold">$ {order?.shippingPrice}</div>
                   </div>
                   <div className="flex justify-between items-center py-1">
                     <div>Tax</div>
-                    <div className="font-semibold">${order?.taxPrice}</div>
+                    <div className="font-semibold">$ {order?.taxPrice}</div>
                   </div>
                 </div>
-                <div className="flex justify-between items-center py-4 font-semibold">
+                <div className="flex justify-between items-center py-4 font-semibold ">
                   <div>Total</div>
-                  <div>${order?.totalPrice}</div>
+                  <div className="text-indigo-500">$ {order?.totalPrice}</div>
                 </div>
                 {!order.isPaid && (
                   <>
@@ -255,7 +255,7 @@ const OrderScreen = () => {
                     <button
                       onClick={deliverOrderHandler}
                       type="button"
-                      className="text-center py-2 mb-4 rounded-md text-white font-bold bg-opacity-75 w-full bg-ecom-3 hover:bg-opacity-100 transition cursor-pointer"
+                      className="text-center py-2 mb-4 rounded-md text-white font-bold w-full bg-ecom-3 hover:text-indigo-600 transition cursor-pointer"
                     >
                       Mark As Delivered
                     </button>

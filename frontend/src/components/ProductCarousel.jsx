@@ -29,32 +29,31 @@ const ProductCarousel = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    fade: true,
     autoplay: true,
     autoplaySpeed: 5000,
     pauseOnHover: false,
   };
 
-  return (
-    !isLoading && (
-      <Slider
-        className="container w-[1440px] bg-ecom-4 mx-auto mt-10 rounded-xl p-5 text-center"
-        {...settings}
-      >
-        {products.map((item) => (
-          <div key={item._id} className="relative">
-            <div className="text-white bg-black bg-opacity-50 max-w-5xl mx-auto h-fit py-2 px-4 rounded-md text-2xl font-bold absolute bottom-5 inset-x-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
-              {item.name}
-            </div>
-            <img
-              className="h-[20rem] rounded-lg mx-auto"
-              src={modifyImageUrl(item.image.url)}
-              alt=""
-            />
+  return !isLoading ? (
+    <Slider
+      className="container w-[1440px] bg-ecom-4 mx-auto mt-10 rounded-xl p-5 text-center"
+      {...settings}
+    >
+      {products.map((item) => (
+        <Link to={`/product/${item._id}`} key={item._id} className="relative">
+          <div className="text-white bg-black bg-opacity-50 mx-1.5 h-fit py-2 px-4 rounded-b-lg text-2xl font-bold absolute bottom-0 inset-x-0 overflow-hidden overflow-ellipsis whitespace-nowrap">
+            {item.name}
           </div>
-        ))}
-      </Slider>
-    )
+          <img
+            className="h-[20rem] rounded-lg mx-auto"
+            src={modifyImageUrl(item.image.url)}
+            alt=""
+          />
+        </Link>
+      ))}
+    </Slider>
+  ) : (
+    <Loader />
   );
 };
 

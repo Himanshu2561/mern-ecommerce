@@ -6,7 +6,7 @@ export default {
       colors: {
         "ecom-1": "#222831",
         "ecom-2": "#393E46",
-        "ecom-3": "#00ADB5",
+        "ecom-3": "#6366f1",
         "ecom-4": "#EEEEEE",
       },
       screens: {
