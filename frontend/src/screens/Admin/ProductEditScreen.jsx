@@ -79,18 +79,27 @@ const ProductEditScreen = () => {
       if (imageFile.size > maxImageSize) {
         return toast.error("File size exceeded");
       } else {
-        const formData = new FormData();
-        formData.append("image", imageFile);
+        if (
+          imageFile.type.includes("png") ||
+          imageFile.type.includes("jpg") ||
+          imageFile.type.includes("jpeg")
+        ) {
+          const formData = new FormData();
+          formData.append("image", imageFile);
 
-        try {
-          const res = await uploadProductImage({
-            formData,
-            productId,
-          }).unwrap();
-          toast.success(res.message);
-          setImage({ public_id: res.public_id, url: res.url });
-        } catch (err) {
-          toast.error(err?.data?.message || err.error);
+          try {
+            const res = await uploadProductImage({
+              formData,
+              productId,
+            }).unwrap();
+            toast.success(res.message);
+            setImage({ public_id: res.public_id, url: res.url });
+          } catch (err) {
+            toast.error(err?.data?.message || err.error);
+          }
+          console.log(imageFile);
+        } else {
+          return toast.error("File format not supported");
         }
       }
     } else {

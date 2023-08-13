@@ -43,7 +43,7 @@ router.post(
         (error, result) => {
           if (error) {
             console.log(error);
-            throw new Error("Server Error");
+            throw new Error("Image error");
           } else {
             res.status(201).json({
               message: "Image uploaded",
