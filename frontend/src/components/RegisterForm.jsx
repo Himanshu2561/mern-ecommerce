@@ -78,7 +78,7 @@ const LoginForm = () => {
             </label>
             <input
               onChange={(e) => {
-                setEmail(e.target.value);
+                setEmail(e.target.value.toLowerCase());
               }}
               type="email"
               name="email"
